@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import sys
 
 TEMP_PROJECT_NAME_DIR = 'project_name'
 
@@ -19,23 +20,26 @@ update_dict['stage_url'] = input("Stage URL [%s]: " % stage_url) or stage_url
 update_dict['production_url'] = \
     input("Production URL [%s]: " % prod_url) or prod_url
 
+v = sys.version_info
+update_dict['python_version'] = '%d.%d.%d' % (v.major, v.minor, v.micro)
+
 # Update files with values
 project_dir = os.path.join(root_dir, TEMP_PROJECT_NAME_DIR)
 for fn in (os.path.join(project_dir, 'settings.py'),
            os.path.join(project_dir, 'wsgi.py'),
            os.path.join(project_dir, 'urls.py'),
+           os.path.join(root_dir, 'runtime.txt'),
            os.path.join(root_dir, 'manage.py')):
     print("Updating %s" % fn)
     with open(fn, 'r') as f:
         contents = f.read()
+    import ipdb; ipdb.set_trace()
     for key, val in update_dict.items():
         re.sub(r'{{\s*%s\s*}}' % key, val, contents)
-    """
     with open(fn, 'w') as f:
         f.write(contents)
-    """
 
 # Update project dir name
 project_sub_dir = os.path.join(root_dir, update_dict['project_sub_dir'])
 print("Moving project directory to %s" % project_sub_dir)
-#shutil.move(project_dir, os.path.join(root_dir, project_sub_dir))
+shutil.move(project_dir, os.path.join(root_dir, project_sub_dir))
