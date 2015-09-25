@@ -33,9 +33,8 @@ for fn in (os.path.join(project_dir, 'settings.py'),
     print("Updating %s" % fn)
     with open(fn, 'r') as f:
         contents = f.read()
-    import ipdb; ipdb.set_trace()
     for key, val in update_dict.items():
-        re.sub(r'{{\s*%s\s*}}' % key, val, contents)
+        contents = re.sub(r'{{\s*%s\s*}}' % key, val, contents)
     with open(fn, 'w') as f:
         f.write(contents)
 
