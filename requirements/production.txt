@@ -1,7 +1,9 @@
 dj-database-url
 Django
+django-pipeline
 django-postgrespool
 gunicorn
 psycopg2
+PyReact
 python-dotenv
 whitenoise

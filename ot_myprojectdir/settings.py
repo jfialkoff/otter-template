@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,13 +72,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 ROOT_URLCONF = '%s.urls' % PROJECT_SUB_DIR
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,7 +89,6 @@ TEMPLATES = [
 ]
 SETTINGS_AVAILABLE_IN_TEMPLATES = (
     'SITE_NAME', 'SITE_DOMAIN', 'DEFAULT_PROTOCOL')
-TEMPLATE_DIRS = [os.path.join(PROJECT_DIR, "templates")]
 WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_SUB_DIR
 
 

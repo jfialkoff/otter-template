@@ -51,7 +51,7 @@ dotenv_fn = os.path.join(root_dir, '.env')
 project_sub_dir = update_dict['ot_myprojectdir']
 with open(dotenv_fn, 'w') as f:
     f.write("SECRET_KEY=%s\n" % generate_secret_key())
-    f.write("DATABASE_URL=postgres://%s:%s@host/%s\n" %
+    f.write("DATABASE_URL=postgres://%s:%s@localhost/%s\n" %
                 tuple([project_sub_dir]*3))
 print("Initialized .env file with DATABASE_URL and SECRET_KEY. Database "
       "settings assume that database name is '%s'." % project_sub_dir)
