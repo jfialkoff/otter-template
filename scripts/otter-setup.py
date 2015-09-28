@@ -19,7 +19,7 @@ update_dict['ot_myproject'] = input("Project Name (e.g,. My Project): ")
 update_dict['ot_myprojectdir'] = input("Project Dir (e.g., myproject): ")
 update_dict['ot_adminname'] = input("Admin Name: ")
 update_dict['ot_adminemail'] = input("Admin Email: ")
-default_url_template = '%%s.%s.com' % update_dict['ot_projectdir']
+default_url_template = '%%s.%s.com' % update_dict['ot_myprojectdir']
 dev_url = default_url_template % 'dev'
 stage_url = default_url_template % 'stage'
 prod_url = default_url_template % 'prod'
@@ -48,7 +48,7 @@ for fn in (os.path.join(project_dir, 'settings.py'),
         f.write(contents)
 
 dotenv_fn = os.path.join(root_dir, '.env')
-project_sub_dir = update_dict['ot_projectdir']
+project_sub_dir = update_dict['ot_myprojectdir']
 with open(dotenv_fn, 'w') as f:
     f.write("SECRET_KEY=%s\n" % generate_secret_key())
     f.write("DATABASE_URL=postgres://%s:%s@host/%s\n" %
