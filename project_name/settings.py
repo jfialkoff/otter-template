@@ -1,5 +1,8 @@
-import os
 import dj_database_url
+import os
+import sys
+
+from django.conf import global_settings
 
 PROJECT_NAME = "{{ project_name }}"
 PROJECT_SUB_DIR = "{{ project_sub_dir }}"
@@ -13,15 +16,14 @@ sys.path.insert(0, PROJECT_DIR)
 
 ##################### Utilities #####################
 def get_from_env(name, *args):
-    name = '%s_%s' % (PROJECT_NAME.upper(), name)
     try:
         return os.environ[name]
     except KeyError:
         if args:
             return args[0]
         else:
-            raise KeyError("%s must be set in the environment to run this "
-                           "project.")
+            raise KeyError(("%s must be set in the environment to run this "
+                            "project.") % name)
 
 ##################### Environments #####################
 DEBUG = True
@@ -44,6 +46,7 @@ TEMPLATE_DEBUG = SITE_ID == DEVELOPMENT
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_from_env('SECRET_KEY')
 
+ALLOWED_HOSTS = []
 for domain in list(SITE_DOMAINS.values())[1:]:
     domain = domain.split(':')[0]
     ALLOWED_HOSTS.extend((domain, 'www.%s' % domain))
@@ -70,8 +73,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = '%s.urls' % PROJECT_SUB_DIR
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
-    'myconf.context_processors.settings',
-    'main.context_processors.client',
 )
 TEMPLATES = [
     {
@@ -103,6 +104,8 @@ USE_TZ = True
 
 
 ##################### Database #####################
+DATABASES = {}
+
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] = dj_database_url.config()
 

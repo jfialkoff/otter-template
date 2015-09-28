@@ -3,4 +3,5 @@ Django
 django-postgrespool
 gunicorn
 psycopg2
+python-dotenv
 whitenoise

@@ -1,7 +1,15 @@
 import os
+import random
 import re
 import shutil
+import string
 import sys
+
+def generate_secret_key():
+    return "".join(
+        [random.SystemRandom().choice(
+                string.digits + string.ascii_letters + string.punctuation
+            ) for i in range(100)])
 
 TEMP_PROJECT_NAME_DIR = 'project_name'
 
@@ -29,6 +37,7 @@ for fn in (os.path.join(project_dir, 'settings.py'),
            os.path.join(project_dir, 'wsgi.py'),
            os.path.join(project_dir, 'urls.py'),
            os.path.join(root_dir, 'runtime.txt'),
+           os.path.join(root_dir, 'Procfile'),
            os.path.join(root_dir, 'manage.py')):
     print("Updating %s" % fn)
     with open(fn, 'r') as f:
@@ -37,6 +46,14 @@ for fn in (os.path.join(project_dir, 'settings.py'),
         contents = re.sub(r'{{\s*%s\s*}}' % key, val, contents)
     with open(fn, 'w') as f:
         f.write(contents)
+
+dotenv_fn = os.path.join(root_dir, '.env'),
+with open(dotenv_fn, 'w') as f:
+    f.writeline("SECRET_KEY=%s" % generate_secret_key())
+    f.writeline("DATABASE_URL=postgres://%s:%s@host/%s" %
+                [update_dict['project_sub_dir']]*3)
+print("Initialized .env file with DATABASE_URL and SECRET_KEY. Database "
+      "settings assume that database name is '%s'." % project_sub_dir)
 
 # Update project dir name
 project_sub_dir = os.path.join(root_dir, update_dict['project_sub_dir'])
