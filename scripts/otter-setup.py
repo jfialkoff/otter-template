@@ -48,7 +48,7 @@ for fn in (os.path.join(project_dir, 'settings.py'),
         f.write(contents)
 
 dotenv_fn = os.path.join(root_dir, '.env')
-project_sub_dir = update_dict['project_sub_dir']
+project_sub_dir = update_dict['ot_projectdir']
 with open(dotenv_fn, 'w') as f:
     f.write("SECRET_KEY=%s\n" % generate_secret_key())
     f.write("DATABASE_URL=postgres://%s:%s@host/%s\n" %
