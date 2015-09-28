@@ -19,7 +19,7 @@ update_dict['ot_projectname'] = input("Project Name (e.g,. My Project): ")
 update_dict['ot_projectdir'] = input("Project Dir (e.g., myproject): ")
 update_dict['ot_adminname'] = input("Admin Name: ")
 update_dict['ot_adminemail'] = input("Admin Email: ")
-default_url_template = '%%s.%s.com' % update_dict['project_sub_dir']
+default_url_template = '%%s.%s.com' % update_dict['ot_projectdir']
 dev_url = default_url_template % 'dev'
 stage_url = default_url_template % 'stage'
 prod_url = default_url_template % 'prod'
@@ -29,7 +29,7 @@ update_dict['ot_production_url'] = \
     input("Production URL [%s]: " % prod_url) or prod_url
 
 v = sys.version_info
-update_dict['python_version'] = '%d.%d.%d' % (v.major, v.minor, v.micro)
+update_dict['ot_python_version'] = '%d.%d.%d' % (v.major, v.minor, v.micro)
 
 # Update files with values
 project_dir = os.path.join(root_dir, TEMP_PROJECT_NAME_DIR)
