@@ -15,17 +15,17 @@ TEMP_PROJECT_NAME_DIR = 'project_name'
 
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 update_dict = {}
-update_dict['project_name'] = input("Project Name (e.g,. My Project): ")
-update_dict['project_sub_dir'] = input("Project Dir (e.g., myproject): ")
-update_dict['admin_name'] = input("Admin Name: ")
-update_dict['admin_email'] = input("Admin Email: ")
+update_dict['ot_projectname'] = input("Project Name (e.g,. My Project): ")
+update_dict['ot_projectdir'] = input("Project Dir (e.g., myproject): ")
+update_dict['ot_adminname'] = input("Admin Name: ")
+update_dict['ot_adminemail'] = input("Admin Email: ")
 default_url_template = '%%s.%s.com' % update_dict['project_sub_dir']
 dev_url = default_url_template % 'dev'
 stage_url = default_url_template % 'stage'
 prod_url = default_url_template % 'prod'
-update_dict['dev_url'] = input("Dev URL [%s]: " % dev_url) or dev_url
-update_dict['stage_url'] = input("Stage URL [%s]: " % stage_url) or stage_url
-update_dict['production_url'] = \
+update_dict['ot_dev_url'] = input("Dev URL [%s]: " % dev_url) or dev_url
+update_dict['ot_stage_url'] = input("Stage URL [%s]: " % stage_url) or stage_url
+update_dict['ot_production_url'] = \
     input("Production URL [%s]: " % prod_url) or prod_url
 
 v = sys.version_info
@@ -43,19 +43,19 @@ for fn in (os.path.join(project_dir, 'settings.py'),
     with open(fn, 'r') as f:
         contents = f.read()
     for key, val in update_dict.items():
-        contents = re.sub(r'{{\s*%s\s*}}' % key, val, contents)
+        contents.replace(key, val)
     with open(fn, 'w') as f:
         f.write(contents)
 
-dotenv_fn = os.path.join(root_dir, '.env'),
+dotenv_fn = os.path.join(root_dir, '.env')
+project_sub_dir = os.path.join(root_dir, update_dict['project_sub_dir'])
 with open(dotenv_fn, 'w') as f:
-    f.writeline("SECRET_KEY=%s" % generate_secret_key())
-    f.writeline("DATABASE_URL=postgres://%s:%s@host/%s" %
-                [update_dict['project_sub_dir']]*3)
+    f.write("SECRET_KEY=%s\n" % generate_secret_key())
+    f.write("DATABASE_URL=postgres://%s:%s@host/%s\n" %
+                tuple([project_sub_dir]*3))
 print("Initialized .env file with DATABASE_URL and SECRET_KEY. Database "
       "settings assume that database name is '%s'." % project_sub_dir)
 
 # Update project dir name
-project_sub_dir = os.path.join(root_dir, update_dict['project_sub_dir'])
 print("Moving project directory to %s" % project_sub_dir)
 shutil.move(project_dir, os.path.join(root_dir, project_sub_dir))

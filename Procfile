@@ -1,1 +1,1 @@
-web: gunicorn {{ project_sub_dir }}.wsgi --log-file -
+web: gunicorn ot_myprojectdir.wsgi --log-file -

@@ -1,5 +1,5 @@
 """
-WSGI config for {{ project_name }} project.
+WSGI config for ot_myproject project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,7 +12,7 @@ import os
 from dotenv import load_dotenv
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-                      "{{ project_name }}.settings")
+                      "ot_myproject.settings")
 dotenv_path = os.path.join(
                       os.path.dirname(os.path.dirname(__file__)), '.env')
 load_dotenv(dotenv_path)

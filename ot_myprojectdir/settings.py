@@ -4,9 +4,9 @@ import sys
 
 from django.conf import global_settings
 
-PROJECT_NAME = "{{ project_name }}"
-PROJECT_SUB_DIR = "{{ project_sub_dir }}"
-ADMINS = (("{{ admin_name }}", "{{ admin_email }}"))
+PROJECT_NAME = "ot_myproject"
+PROJECT_SUB_DIR = "ot_myprojectdir"
+ADMINS = (("ot_adminname", "ot_adminemail"))
 
 ##################### Paths #####################
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -35,9 +35,9 @@ PRODUCTION = 3
 SITE_ID = int(os.environ.get("DJANGO_SITE_ID", 1))
 SITE_NAME = PROJECT_NAME + (' (dev)', ' (stage)', '')[SITE_ID-1]
 SITE_DOMAINS = {
-    DEVELOPMENT: '{{ dev_url }}',
-    STAGE: '{{ stage_url }}',
-    PRODUCTION: '{{ production_url }}'}
+    DEVELOPMENT: 'ot_dev_url',
+    STAGE: 'ot_stage_url',
+    PRODUCTION: 'ot_production_url'}
 SITE_DOMAIN = SITE_DOMAINS[SITE_ID]
 
 DEBUG = SITE_ID == DEVELOPMENT

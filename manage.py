@@ -5,7 +5,7 @@ import sys
 from dotenv import load_dotenv
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ project_sub_dir }}.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ot_myprojectdir.settings")
     dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
     load_dotenv(dotenv_path)
 
