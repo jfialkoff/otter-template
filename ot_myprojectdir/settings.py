@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pipeline',
     'main',
 )
 MIDDLEWARE_CLASSES = (
@@ -81,6 +82,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -121,7 +123,23 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
-
+STATISFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+##################### Pipeline #####################
+PIPELINE_COMPILERS = (
+    'react.utils.pipeline.JSXCompiler',
+)
+PIPELINE_JS = {
+    'todo': {
+        'source_filenames': ('jsx/*.jsx',),
+        'output_filename': 'js/todo.js',
+    },
+}
