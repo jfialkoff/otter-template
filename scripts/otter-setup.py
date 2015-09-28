@@ -11,12 +11,12 @@ def generate_secret_key():
                 string.digits + string.ascii_letters + string.punctuation
             ) for i in range(100)])
 
-TEMP_PROJECT_NAME_DIR = 'ot_projectdir'
+TEMP_PROJECT_NAME_DIR = 'ot_myprojectdir'
 
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 update_dict = {}
-update_dict['ot_projectname'] = input("Project Name (e.g,. My Project): ")
-update_dict['ot_projectdir'] = input("Project Dir (e.g., myproject): ")
+update_dict['ot_myproject'] = input("Project Name (e.g,. My Project): ")
+update_dict['ot_myprojectdir'] = input("Project Dir (e.g., myproject): ")
 update_dict['ot_adminname'] = input("Admin Name: ")
 update_dict['ot_adminemail'] = input("Admin Email: ")
 default_url_template = '%%s.%s.com' % update_dict['ot_projectdir']
