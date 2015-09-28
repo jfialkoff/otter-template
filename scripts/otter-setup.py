@@ -11,7 +11,7 @@ def generate_secret_key():
                 string.digits + string.ascii_letters + string.punctuation
             ) for i in range(100)])
 
-TEMP_PROJECT_NAME_DIR = 'project_name'
+TEMP_PROJECT_NAME_DIR = 'ot_projectname'
 
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 update_dict = {}
