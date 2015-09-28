@@ -48,7 +48,7 @@ for fn in (os.path.join(project_dir, 'settings.py'),
         f.write(contents)
 
 dotenv_fn = os.path.join(root_dir, '.env')
-project_sub_dir = os.path.join(root_dir, update_dict['project_sub_dir'])
+project_sub_dir = update_dict['project_sub_dir']
 with open(dotenv_fn, 'w') as f:
     f.write("SECRET_KEY=%s\n" % generate_secret_key())
     f.write("DATABASE_URL=postgres://%s:%s@host/%s\n" %
@@ -57,5 +57,6 @@ print("Initialized .env file with DATABASE_URL and SECRET_KEY. Database "
       "settings assume that database name is '%s'." % project_sub_dir)
 
 # Update project dir name
+project_sub_dir = os.path.join(root_dir, project_sub_dir)
 print("Moving project directory to %s" % project_sub_dir)
 shutil.move(project_dir, os.path.join(root_dir, project_sub_dir))
