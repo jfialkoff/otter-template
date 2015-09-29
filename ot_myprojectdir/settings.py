@@ -123,7 +123,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
-STATISFILES_FINDERS = (
+STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'pipeline.finders.PipelineFinder',
@@ -139,7 +139,9 @@ PIPELINE_COMPILERS = (
 )
 PIPELINE_JS = {
     'todo': {
-        'source_filenames': ('jsx/*.jsx',),
+        'source_filenames': ('jsx/app.jsx',),
         'output_filename': 'js/todo.js',
     },
 }
+PIPELINE_JS_COMPRESSOR = ''
+#PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
