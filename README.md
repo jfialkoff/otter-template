@@ -1,29 +1,27 @@
-# Grover
+# Otter Template
 
-Service sign-up and fulfillment service.
-
-## Features
-
-- Rubix template React frontend.
-- Organization DB separation
-- Group-based, extensible authentication
+Otter Template is a base template for Django projects that makes it
+super easy to get started on a new Django project. This branch
+(`master`) is best for projects that don't have complicated frontends.
+For projects with complicated frontends, the `pipeline` branch is
+recommended.
 
 ## How to Use
 
 To use this project, follow these steps:
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
-
-## Dev How Tos
-
-Setting up your environment:
-
-
-Using this template to create a new Django app is easy::
-
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
+1. Set up your virtual environment.
+2. Download and unpack the project into your root directory.
+3. Run setup (`$ python scripts/otter-setup.py`) and enter the requested
+   information.
+4. (optional) Remove `scripts/otter-setup.py`. This shouldn't be run
+   again.
+5. Commit all files to your git repository.
+6. Install requirements (`$ pip install -r requirements/dev.txt`)
+7. Pin requirements: Run `$ pip freeze` for a full list of requirements
+   and versions. Update files in `requirements/` with the installed
+   (i.e., most up-to-date) versions.
+6. Run your web server (`$ python manage.py runserver`).
 
 ## Deployment to Heroku
 
