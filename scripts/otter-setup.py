@@ -37,6 +37,7 @@ import ipdb; ipdb.set_trace()
 for fn in (os.path.join(project_dir, 'settings.py'),
            os.path.join(project_dir, 'wsgi.py'),
            os.path.join(project_dir, 'urls.py'),
+           os.path.join(root_dir, 'package.json'),
            os.path.join(root_dir, 'runtime.txt'),
            os.path.join(root_dir, 'Procfile'),
            os.path.join(root_dir, 'manage.py')):
