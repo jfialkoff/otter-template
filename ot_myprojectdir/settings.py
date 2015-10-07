@@ -135,5 +135,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 ##################### Compressor #####################
 COMPRESS_PRECOMPILERS = (
-    ('text/jsx', 'mycompressor.react_compressor.ReactFilter'),
+   ('text/jsx', 'cat {infile} | babel > {outfile}'),
 )
