@@ -44,7 +44,7 @@ for fn in (os.path.join(project_dir, 'settings.py'),
     with open(fn, 'r') as f:
         contents = f.read()
     for key, val in update_dict.items():
-        contents = contents.replace(key, val)
+        contents = re.sub(r'\b%s\b' % key, val, contents)
     with open(fn, 'w') as f:
         f.write(contents)
 
