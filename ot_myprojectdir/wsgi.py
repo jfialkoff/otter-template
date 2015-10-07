@@ -12,7 +12,7 @@ import os
 from dotenv import load_dotenv
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-                      "ot_myproject.settings")
+                      "ot_myprojectdir.settings")
 dotenv_path = os.path.join(
                       os.path.dirname(os.path.dirname(__file__)), '.env')
 load_dotenv(dotenv_path)

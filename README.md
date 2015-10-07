@@ -23,14 +23,20 @@ To use this project, follow these steps:
 
 ## Deployment to Heroku
 
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
-
     $ heroku create
     $ git push heroku master
-
     $ heroku run python manage.py migrate
+
+You'll also need to set a `SECRET_KEY`. You can use
+[this online tool](http://www.miniwebtool.com/django-secret-key-generator/)
+to generate one. Then,
+
+1. Go to heroku.com.
+2. Choose your app from the apps list.
+3. Click on the "Settings" tab.
+4. Click "Reveal config vars" if you haven't previously.
+5. Enter a new config var using "SECRET_KEY" as the key, and the random
+   string you created earlier as the value.
 
 ## Further Reading
 
