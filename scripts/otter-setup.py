@@ -33,7 +33,6 @@ update_dict['ot_python_version'] = '%d.%d.%d' % (v.major, v.minor, v.micro)
 
 # Update files with values
 project_dir = os.path.join(root_dir, TEMP_PROJECT_NAME_DIR)
-import ipdb; ipdb.set_trace()
 for fn in (os.path.join(project_dir, 'settings.py'),
            os.path.join(project_dir, 'wsgi.py'),
            os.path.join(project_dir, 'urls.py'),
@@ -59,7 +58,6 @@ print("Initialized .env file with DATABASE_URL and SECRET_KEY. Database "
       "settings assume that database name is '%s'." % project_sub_dir)
 
 # Update project dir name
-import ipdb; ipdb.set_trace()
 project_sub_dir = os.path.join(root_dir, project_sub_dir)
 print("Moving project directory to %s" % project_sub_dir)
-shutil.move(project_dir, project_sub_dir)
+os.rename(project_dir, project_sub_dir)
