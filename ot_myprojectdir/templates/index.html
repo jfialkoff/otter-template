@@ -1,4 +1,4 @@
-{% load pipeline %}
+{% load compress %}
 
 <!doctype html>
 <html lang="en" data-framework="react">
@@ -16,12 +16,16 @@
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
 
-        <script src="{{STATIC_URL}}js/base.js"></script>
-        <script src="{{STATIC_URL}}js/react-with-addons.js"></script>
-        <script src="{{STATIC_URL}}js/director.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/base.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/react-with-addons.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/director.js"></script>
 
-        <script src="{{STATIC_URL}}js/utils.js"></script>
-        <script src="{{STATIC_URL}}js/todoModel.js"></script>
-        {% javascript 'todo' %}
+        <script type="text/javascript" src="{{STATIC_URL}}js/utils.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/todoModel.js"></script>
+        {% compress js %}
+        <script type="text/jsx" src="{{STATIC_URL}}jsx/todoItem.jsx"></script>
+        <script type="text/jsx" src="{{STATIC_URL}}jsx/footer.jsx"></script>
+        <script type="text/jsx" src="{{STATIC_URL}}jsx/app.jsx"></script>
+        {% endcompress %}
 	</body>
 </html>

@@ -59,7 +59,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pipeline',
+    'compressor',
     'main',
 )
 MIDDLEWARE_CLASSES = (
@@ -73,10 +73,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 ROOT_URLCONF = '%s.urls' % PROJECT_SUB_DIR
+TEMPLATES_ROOT = os.path.join(PROJECT_DIR, "templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_DIR, "templates")],
+        'DIRS': [TEMPLATES_ROOT],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,22 +127,14 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
+    'compressor.finders.CompressorFinder',
 )
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
-##################### Pipeline #####################
-PIPELINE_COMPILERS = (
-    'react.utils.pipeline.JSXCompiler',
+##################### Compressor #####################
+COMPRESS_PRECOMPILERS = (
+    ('text/jsx', 'mycompressor.react_compressor.ReactFilter'),
 )
-PIPELINE_JS = {
-    'todo': {
-        'source_filenames': ('jsx/app.jsx',),
-        'output_filename': 'js/todo.js',
-    },
-}
-PIPELINE_JS_COMPRESSOR = ''
-#PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'

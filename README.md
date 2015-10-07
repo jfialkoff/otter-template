@@ -1,6 +1,6 @@
 # Otter Template - Pipeline
 
-This Otter Template uses `django-pipeline` for managing complicated
+This Otter Template uses `django-compressor` for managing complicated
 front-ends that employ SASS, JSX, etc. Once you complete setup you'll
 have the React version of ToDoMVC running.
 
