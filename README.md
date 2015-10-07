@@ -23,12 +23,25 @@ To use this project, follow these steps:
 
 ## Deployment to Heroku
 
+### Create a Heroku instance
     $ heroku create
+
+### Configure your instance to use multiple build packs
+
+This template uses `pip` and `npm`. The latter is used to install
+`babel` which is used by `django-compressor` to translate `jsx` files to
+`js` files. To configure your instance accordingly:
+
+    $ heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git
+
+### Deploy your application
+
     $ git push heroku master
     $ heroku run python manage.py migrate
 
+### Set a SECRET_KEY
 You'll also need to set a `SECRET_KEY`. You can use
-[this online tool](http://www.miniwebtool.com/django-secret-key-generator/)
+[this tool](http://www.miniwebtool.com/django-secret-key-generator/)
 to generate one. Then,
 
 1. Go to heroku.com.
